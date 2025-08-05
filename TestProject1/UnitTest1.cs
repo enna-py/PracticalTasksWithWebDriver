@@ -31,7 +31,7 @@ namespace MyProject.Tests
 
         [Test]
         [TestCase("C#", "All Locations")]
-        public void PageContainsRequiredText(string programmingLanguage, string location)
+        public void CareersSearchWorkAsExpected(string programmingLanguage, string location)
         {
             driver.FindElement(By.XPath("//a[@class = 'top-navigation__item-link js-op' and normalize-space()='Careers']")).Click();
             driver.FindElement(By.Id("new_form_job_search-keyword")).SendKeys(programmingLanguage);
@@ -41,7 +41,7 @@ namespace MyProject.Tests
             locations.Click();
             locations.SendKeys(location);
             driver.FindElement(By.XPath("//select[@id = 'new_form_job_search-location']"));
-            driver.FindElement(By.XPath("//input[contains(@name, 'remote')]")).Click();
+            driver.FindElement(By.Name("remote")).Click();
             driver.FindElement(By.XPath("//button[@type='submit']")).Click();
 
             var lastListItem = driver.FindElement(By.XPath("//ul[contains(@class, 'search-result__list')]/li[last()]"));
