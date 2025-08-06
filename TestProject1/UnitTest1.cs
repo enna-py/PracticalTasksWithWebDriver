@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using TestProject1.DriverInitialization;
 
 namespace MyProject.Tests
 {
@@ -11,12 +12,13 @@ namespace MyProject.Tests
     public class MyClassTests
     {
         private ChromeDriver driver;
+        private DriverInstance driverInstance = new DriverInstance();
         private WebDriverWait wait;
 
         [SetUp]
         public void SetUp()
         {
-            driver = new ChromeDriver();
+            driver = (ChromeDriver)driverInstance.GetDriverInstance();
             driver.Url = "https://www.epam.com/";
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             driver.Manage().Window.Maximize();
